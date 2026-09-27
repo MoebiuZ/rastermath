@@ -3,6 +3,10 @@ name: Deploy RasterMath build to GitHub Pages
 on:
   workflow_dispatch:
     inputs:
+      release_tag:
+        description: Temporary release containing the local build
+        required: true
+        type: string
       asset_name:
         description: Release asset containing the local dist directory
         required: true
@@ -33,14 +37,16 @@ jobs:
       - name: Download and verify local build
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
           ASSET_NAME: ${{ inputs.asset_name }}
           EXPECTED_SHA256: ${{ inputs.sha256 }}
         run: |
           set -euo pipefail
+          [[ "$RELEASE_TAG" =~ ^pages-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{12}$ ]]
           [[ "$ASSET_NAME" =~ ^rastermath-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{12}\.tar\.gz$ ]]
           [[ "$EXPECTED_SHA256" =~ ^[0-9a-f]{64}$ ]]
           mkdir -p download site
-          gh release download pages-builds \
+          gh release download "$RELEASE_TAG" \
             --repo "$GITHUB_REPOSITORY" \
             --pattern "$ASSET_NAME" \
             --dir download
@@ -64,16 +70,17 @@ jobs:
 
   cleanup:
     needs: deploy
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Remove deployed release asset
+      - name: Remove temporary release and tag
         env:
           GH_TOKEN: ${{ github.token }}
-          ASSET_NAME: ${{ inputs.asset_name }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           set -euo pipefail
-          [[ "$ASSET_NAME" =~ ^rastermath-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{12}\.tar\.gz$ ]]
-          gh release delete-asset pages-builds "$ASSET_NAME" \
-            --repo "$GITHUB_REPOSITORY" --yes
+          [[ "$RELEASE_TAG" =~ ^pages-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{12}$ ]]
+          gh release delete "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" --cleanup-tag --yes
