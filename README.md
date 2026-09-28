@@ -1,13 +1,11 @@
 # RasterMath Engine (Beta)
 
-## Explora el lado creativo de los números
+## Explore the creative side of numbers
 
-RasterMath es un lenguaje declarativo (y a veces funcional) para describir imágenes, movimiento y sonido mediante expresiones matemáticas.
+RasterMath is a declarative (and sometimes functional) language for describing images, movement and sound through mathematical expressions.
 
-El motor de ejecución incorpora aceleración GPU para visualizar simulaciones complejas y un completo sintetizador sustractivo polifónico de hasta tres osciladores por voz para dar rienda suelta a todas tus ideas.
+The runtime uses GPU acceleration to visualize complex simulations and includes a full-featured polyphonic subtractive synthesizer with up to three oscillators per voice, giving you room to explore every idea.
 
-Nace con el espíritu experimental de la demoscene de los 80 y está destinado a **humanos** que disfrutan de explorar sus ideas mediante código.
+Born from the experimental spirit of the 1980s demoscene, it is intended for **humans** who enjoy exploring their ideas through code.
 
-**[Visitar RasterMath](https://rastermath.opcode.one/)** · [Empezar](https://rastermath.opcode.one/create/) · [Ver ejemplos](https://rastermath.opcode.one/examples/)
-
-Requiere soporte WebGL2 y Web Audio.
+[![Visit RasterMath](https://img.shields.io/badge/Visit%20RasterMath-Open%20the%20website-6f5bd8?style=for-the-badge)](https://rastermath.opcode.one/)
