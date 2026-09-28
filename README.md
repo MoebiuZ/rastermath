@@ -8,4 +8,4 @@ The runtime uses GPU acceleration to visualize complex simulations and includes 
 
 Born from the experimental spirit of the 1980s demoscene, it is intended for **humans** who enjoy exploring their ideas through code.
 
-[![Visit RasterMath](https://img.shields.io/badge/Visit%20RasterMath-Open%20the%20website-6f5bd8?style=for-the-badge)](https://rastermath.opcode.one/)
+[![Visit RasterMath](https://img.shields.io/badge/Visit%20RasterMath-6f5bd8?style=for-the-badge)](https://rastermath.opcode.one/)
